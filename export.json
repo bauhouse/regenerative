@@ -1,0 +1,1928 @@
+{
+    "cmsType": "sanity",
+    "staticDir": "public",
+    "pagesDir": "content/pages",
+    "dataDir": "content/data",
+    "uploadDir": "images",
+    "pageContentFieldKey": "content",
+    "objectTypeKey": "type",
+    "dataset": "production",
+    "models": [
+        {
+            "type": "data",
+            "label": "Site Configuration",
+            "fields": [
+                {
+                    "type": "string",
+                    "name": "title",
+                    "label": "Title",
+                    "description": "Site title",
+                    "required": true
+                },
+                {
+                    "type": "string",
+                    "name": "path_prefix",
+                    "label": "Base URL",
+                    "description": "The base URL of this site. Useful for sites hosted under specific path, e.g.: https://www.example.com/my-site/",
+                    "required": true,
+                    "hidden": true
+                },
+                {
+                    "type": "string",
+                    "name": "description",
+                    "label": "Site Description",
+                    "description": "The default site description used in meta data."
+                },
+                {
+                    "type": "model",
+                    "name": "header",
+                    "label": "Header Configuration",
+                    "models": [
+                        "header"
+                    ]
+                },
+                {
+                    "type": "model",
+                    "name": "footer",
+                    "label": "Footer Configuration",
+                    "models": [
+                        "footer"
+                    ]
+                },
+                {
+                    "type": "string",
+                    "name": "stackbit_file_path",
+                    "label": "Site Configuration File Path",
+                    "description": "The file path of the file that stores this data",
+                    "const": "content/data/config.json",
+                    "hidden": true
+                },
+                {
+                    "type": "string",
+                    "name": "stackbit_model_type",
+                    "label": "Stackbit Model Type",
+                    "description": "Stackbit model type",
+                    "const": "data",
+                    "hidden": true
+                }
+            ],
+            "file": "config.json",
+            "name": "config",
+            "hideContent": true
+        },
+        {
+            "type": "object",
+            "label": "Header Configuration",
+            "labelField": "title",
+            "fields": [
+                {
+                    "type": "string",
+                    "name": "title",
+                    "label": "Header Title",
+                    "description": "The title displayed in the header if logo image not specified"
+                },
+                {
+                    "type": "image",
+                    "name": "logo",
+                    "label": "Logo",
+                    "description": "The logo image displayed in the header"
+                },
+                {
+                    "type": "boolean",
+                    "name": "has_nav",
+                    "label": "Enable Navigation Menu",
+                    "description": "Display the navigation menu bar in the header",
+                    "default": true
+                },
+                {
+                    "type": "list",
+                    "name": "nav_links",
+                    "label": "Navigation Menu Links",
+                    "description": "List of navigation links in header",
+                    "items": {
+                        "type": "model",
+                        "models": [
+                            "action"
+                        ]
+                    }
+                },
+                {
+                    "type": "string",
+                    "name": "type",
+                    "label": "Object Type",
+                    "description": "The type of the object",
+                    "const": "header",
+                    "hidden": true
+                },
+                {
+                    "type": "string",
+                    "name": "stackbit_model_type",
+                    "label": "Stackbit Model Type",
+                    "description": "Stackbit model type",
+                    "const": "object",
+                    "hidden": true
+                }
+            ],
+            "name": "header",
+            "hideContent": true
+        },
+        {
+            "type": "object",
+            "label": "Footer Configuration",
+            "labelField": "content",
+            "fields": [
+                {
+                    "type": "boolean",
+                    "name": "has_nav",
+                    "label": "Enable Navigation Menu",
+                    "description": "Display the secondary navigation menu in the footer",
+                    "default": true
+                },
+                {
+                    "type": "list",
+                    "name": "nav_links",
+                    "label": "Navigation Menu Links",
+                    "description": "List of navigation links in footer",
+                    "items": {
+                        "type": "model",
+                        "models": [
+                            "action"
+                        ]
+                    }
+                },
+                {
+                    "type": "boolean",
+                    "name": "has_social",
+                    "label": "Enable Social Links",
+                    "description": "Display social links in the footer",
+                    "default": true
+                },
+                {
+                    "type": "list",
+                    "name": "social_links",
+                    "label": "Social Links",
+                    "description": "The list of social links displayed in the footer",
+                    "items": {
+                        "type": "model",
+                        "models": [
+                            "action"
+                        ]
+                    }
+                },
+                {
+                    "type": "string",
+                    "name": "content",
+                    "label": "Footer Content",
+                    "description": "The copyright text displayed in the footer"
+                },
+                {
+                    "type": "list",
+                    "name": "links",
+                    "label": "Links",
+                    "description": "A list of links displayed in the footer",
+                    "items": {
+                        "type": "model",
+                        "models": [
+                            "action"
+                        ]
+                    }
+                },
+                {
+                    "type": "string",
+                    "name": "type",
+                    "label": "Object Type",
+                    "description": "The type of the object",
+                    "const": "footer",
+                    "hidden": true
+                },
+                {
+                    "type": "string",
+                    "name": "stackbit_model_type",
+                    "label": "Stackbit Model Type",
+                    "description": "Stackbit model type",
+                    "const": "object",
+                    "hidden": true
+                }
+            ],
+            "name": "footer",
+            "hideContent": true
+        },
+        {
+            "type": "data",
+            "label": "Person",
+            "folder": "team",
+            "fields": [
+                {
+                    "type": "string",
+                    "name": "id",
+                    "label": "ID",
+                    "description": "A unique identifier used when filtering posts, e.g. \"john-doe\"",
+                    "required": true
+                },
+                {
+                    "type": "string",
+                    "name": "link",
+                    "label": "Link",
+                    "description": "The link to the author page, e.g. \"blog/author/john-doe\""
+                },
+                {
+                    "type": "string",
+                    "name": "first_name",
+                    "label": "First Name",
+                    "required": true
+                },
+                {
+                    "type": "string",
+                    "name": "last_name",
+                    "label": "Last Name"
+                },
+                {
+                    "type": "image",
+                    "name": "photo",
+                    "label": "Photo"
+                },
+                {
+                    "type": "markdown",
+                    "name": "bio",
+                    "label": "Bio"
+                },
+                {
+                    "type": "string",
+                    "name": "type",
+                    "label": "Object Type",
+                    "description": "The type of the object",
+                    "const": "person",
+                    "hidden": true
+                },
+                {
+                    "type": "string",
+                    "name": "stackbit_model_type",
+                    "label": "Stackbit Model Type",
+                    "description": "Stackbit model type",
+                    "const": "data",
+                    "hidden": true
+                }
+            ],
+            "name": "person",
+            "hideContent": true
+        },
+        {
+            "type": "data",
+            "label": "Category",
+            "folder": "categories",
+            "fields": [
+                {
+                    "type": "string",
+                    "name": "id",
+                    "label": "ID",
+                    "description": "A unique identifier used when filtering posts, e.g. \"news\"",
+                    "required": true
+                },
+                {
+                    "type": "string",
+                    "name": "link",
+                    "label": "Link",
+                    "description": "The link to the category page, e.g. \"blog/category/news\""
+                },
+                {
+                    "type": "string",
+                    "name": "title",
+                    "label": "Title",
+                    "required": true
+                },
+                {
+                    "type": "string",
+                    "name": "type",
+                    "label": "Object Type",
+                    "description": "The type of the object",
+                    "const": "category",
+                    "hidden": true
+                },
+                {
+                    "type": "string",
+                    "name": "stackbit_model_type",
+                    "label": "Stackbit Model Type",
+                    "description": "Stackbit model type",
+                    "const": "data",
+                    "hidden": true
+                }
+            ],
+            "name": "category",
+            "hideContent": true
+        },
+        {
+            "type": "page",
+            "label": "Page",
+            "layout": "page",
+            "exclude": "blog/**/*",
+            "fields": [
+                {
+                    "type": "string",
+                    "name": "title",
+                    "label": "Title",
+                    "description": "The title of the page",
+                    "required": true
+                },
+                {
+                    "type": "string",
+                    "name": "excerpt",
+                    "label": "Excerpt",
+                    "description": "The excerpt of the page displayed in meta data"
+                },
+                {
+                    "type": "string",
+                    "name": "layout",
+                    "label": "Layout",
+                    "const": "page",
+                    "hidden": true
+                },
+                {
+                    "type": "string",
+                    "name": "stackbit_url_path",
+                    "label": "Page URL Path",
+                    "description": "The URL path of this page relative to site root. For example, the site root page would be \"/\", and post page would be \"posts/new-post/\"",
+                    "required": true
+                },
+                {
+                    "type": "string",
+                    "name": "stackbit_dir",
+                    "label": "Directory",
+                    "description": "The directory path where this file is stored",
+                    "const": "content/pages",
+                    "hidden": true
+                },
+                {
+                    "type": "markdown",
+                    "name": "content",
+                    "label": "Content",
+                    "description": "Page content"
+                },
+                {
+                    "type": "string",
+                    "name": "stackbit_model_type",
+                    "label": "Stackbit Model Type",
+                    "description": "Stackbit model type",
+                    "const": "page",
+                    "hidden": true
+                }
+            ],
+            "name": "page"
+        },
+        {
+            "type": "page",
+            "label": "Post",
+            "layout": "post",
+            "folder": "blog",
+            "exclude": [
+                "index.md",
+                "category/**",
+                "author/**"
+            ],
+            "fields": [
+                {
+                    "type": "string",
+                    "name": "title",
+                    "label": "Title",
+                    "description": "The title of the post",
+                    "required": true
+                },
+                {
+                    "type": "date",
+                    "name": "date",
+                    "label": "Date",
+                    "description": "The publish date of the post",
+                    "required": true
+                },
+                {
+                    "type": "reference",
+                    "name": "author",
+                    "label": "Author",
+                    "description": "The author of the post",
+                    "models": [
+                        "person"
+                    ]
+                },
+                {
+                    "type": "list",
+                    "name": "categories",
+                    "label": "Categories",
+                    "description": "The categories of the post",
+                    "items": {
+                        "type": "reference",
+                        "models": [
+                            "category"
+                        ]
+                    }
+                },
+                {
+                    "type": "list",
+                    "name": "tags",
+                    "label": "Tags",
+                    "description": "The tags of the post",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                {
+                    "type": "image",
+                    "name": "image",
+                    "label": "Featured Image",
+                    "description": "The image shown in the blog post and blog feed"
+                },
+                {
+                    "type": "string",
+                    "name": "excerpt",
+                    "label": "Excerpt",
+                    "description": "The excerpt of the page displayed in the blog feed and meta data"
+                },
+                {
+                    "type": "string",
+                    "name": "layout",
+                    "label": "Layout",
+                    "const": "post",
+                    "hidden": true
+                },
+                {
+                    "type": "string",
+                    "name": "stackbit_url_path",
+                    "label": "Post URL Path",
+                    "description": "The URL path of this page relative to site root. For example, the site root page would be \"/\", and post page would be \"posts/new-post/\"",
+                    "required": true
+                },
+                {
+                    "type": "string",
+                    "name": "stackbit_dir",
+                    "label": "Directory",
+                    "description": "The directory path where this file is stored",
+                    "const": "content/pages",
+                    "hidden": true
+                },
+                {
+                    "type": "markdown",
+                    "name": "content",
+                    "label": "Content",
+                    "description": "Page content"
+                },
+                {
+                    "type": "string",
+                    "name": "stackbit_model_type",
+                    "label": "Stackbit Model Type",
+                    "description": "Stackbit model type",
+                    "const": "page",
+                    "hidden": true
+                }
+            ],
+            "name": "post"
+        },
+        {
+            "type": "page",
+            "label": "Advanced Page",
+            "layout": "advanced",
+            "hideContent": true,
+            "fields": [
+                {
+                    "type": "string",
+                    "name": "title",
+                    "label": "Title",
+                    "description": "The title of the page",
+                    "required": true
+                },
+                {
+                    "type": "list",
+                    "name": "sections",
+                    "label": "Sections",
+                    "description": "Page sections",
+                    "items": {
+                        "type": "model",
+                        "labelField": "title",
+                        "models": [
+                            "blog_feed_section",
+                            "contact_section",
+                            "content_section",
+                            "cta_section",
+                            "features_section",
+                            "hero_section",
+                            "team_section"
+                        ]
+                    }
+                },
+                {
+                    "type": "string",
+                    "name": "layout",
+                    "label": "Layout",
+                    "const": "advanced",
+                    "hidden": true
+                },
+                {
+                    "type": "string",
+                    "name": "stackbit_url_path",
+                    "label": "Advanced Page URL Path",
+                    "description": "The URL path of this page relative to site root. For example, the site root page would be \"/\", and post page would be \"posts/new-post/\"",
+                    "required": true
+                },
+                {
+                    "type": "string",
+                    "name": "stackbit_dir",
+                    "label": "Directory",
+                    "description": "The directory path where this file is stored",
+                    "const": "content/pages",
+                    "hidden": true
+                },
+                {
+                    "type": "string",
+                    "name": "stackbit_model_type",
+                    "label": "Stackbit Model Type",
+                    "description": "Stackbit model type",
+                    "const": "page",
+                    "hidden": true
+                }
+            ],
+            "name": "advanced"
+        },
+        {
+            "type": "object",
+            "label": "Blog Feed Section",
+            "labelField": "title",
+            "fields": [
+                {
+                    "type": "string",
+                    "name": "title",
+                    "label": "Title",
+                    "description": "The title of the section"
+                },
+                {
+                    "type": "boolean",
+                    "name": "show_recent",
+                    "label": "Show recent posts",
+                    "description": "Show the specified number of recent posts. Should not be used with author and category filters.",
+                    "default": false,
+                    "required": true
+                },
+                {
+                    "type": "number",
+                    "name": "recent_count",
+                    "label": "Number of recent posts to show"
+                },
+                {
+                    "type": "reference",
+                    "name": "author",
+                    "label": "Author Filter",
+                    "description": "Filter posts by an author",
+                    "models": [
+                        "person"
+                    ]
+                },
+                {
+                    "type": "reference",
+                    "name": "category",
+                    "label": "Category Filter",
+                    "description": "Filter posts by category",
+                    "models": [
+                        "category"
+                    ]
+                },
+                {
+                    "type": "string",
+                    "name": "type",
+                    "label": "Object Type",
+                    "description": "The type of the object",
+                    "const": "blog_feed_section",
+                    "hidden": true
+                },
+                {
+                    "type": "string",
+                    "name": "stackbit_model_type",
+                    "label": "Stackbit Model Type",
+                    "description": "Stackbit model type",
+                    "const": "object",
+                    "hidden": true
+                }
+            ],
+            "name": "blog_feed_section",
+            "hideContent": true
+        },
+        {
+            "type": "object",
+            "label": "Contact Section",
+            "name": "contact_section",
+            "hideContent": true,
+            "fields": [
+                {
+                    "type": "string",
+                    "name": "type",
+                    "label": "Object Type",
+                    "description": "The type of the object",
+                    "const": "contact_section",
+                    "hidden": true
+                },
+                {
+                    "type": "string",
+                    "name": "stackbit_model_type",
+                    "label": "Stackbit Model Type",
+                    "description": "Stackbit model type",
+                    "const": "object",
+                    "hidden": true
+                }
+            ]
+        },
+        {
+            "type": "object",
+            "label": "Content Section",
+            "labelField": "title",
+            "fields": [
+                {
+                    "type": "string",
+                    "name": "title",
+                    "label": "Title",
+                    "description": "The title of the section"
+                },
+                {
+                    "type": "markdown",
+                    "name": "content",
+                    "label": "Content",
+                    "description": "The text content of the section"
+                },
+                {
+                    "type": "string",
+                    "name": "type",
+                    "label": "Object Type",
+                    "description": "The type of the object",
+                    "const": "content_section",
+                    "hidden": true
+                },
+                {
+                    "type": "string",
+                    "name": "stackbit_model_type",
+                    "label": "Stackbit Model Type",
+                    "description": "Stackbit model type",
+                    "const": "object",
+                    "hidden": true
+                }
+            ],
+            "name": "content_section",
+            "hideContent": true
+        },
+        {
+            "type": "object",
+            "label": "CTA Section",
+            "labelField": "title",
+            "fields": [
+                {
+                    "type": "string",
+                    "name": "title",
+                    "label": "Title",
+                    "description": "The title of the section"
+                },
+                {
+                    "type": "string",
+                    "name": "subtitle",
+                    "label": "Subtitle",
+                    "description": "The subtitle of the section"
+                },
+                {
+                    "type": "list",
+                    "name": "actions",
+                    "label": "Action Buttons",
+                    "items": {
+                        "type": "model",
+                        "models": [
+                            "action"
+                        ]
+                    }
+                },
+                {
+                    "type": "boolean",
+                    "name": "has_background",
+                    "label": "Enable section background",
+                    "default": false
+                },
+                {
+                    "type": "enum",
+                    "name": "background_color",
+                    "label": "Background Color",
+                    "options": [
+                        "white",
+                        "gray",
+                        "blue"
+                    ],
+                    "default": "white",
+                    "description": "The background color of the section"
+                },
+                {
+                    "type": "string",
+                    "name": "type",
+                    "label": "Object Type",
+                    "description": "The type of the object",
+                    "const": "cta_section",
+                    "hidden": true
+                },
+                {
+                    "type": "string",
+                    "name": "stackbit_model_type",
+                    "label": "Stackbit Model Type",
+                    "description": "Stackbit model type",
+                    "const": "object",
+                    "hidden": true
+                }
+            ],
+            "name": "cta_section",
+            "hideContent": true
+        },
+        {
+            "type": "object",
+            "label": "Features Section",
+            "labelField": "title",
+            "fields": [
+                {
+                    "type": "string",
+                    "name": "title",
+                    "label": "Title",
+                    "description": "The title of the section"
+                },
+                {
+                    "type": "list",
+                    "name": "features",
+                    "label": "Features",
+                    "items": {
+                        "type": "model",
+                        "models": [
+                            "feature"
+                        ]
+                    }
+                },
+                {
+                    "type": "string",
+                    "name": "type",
+                    "label": "Object Type",
+                    "description": "The type of the object",
+                    "const": "features_section",
+                    "hidden": true
+                },
+                {
+                    "type": "string",
+                    "name": "stackbit_model_type",
+                    "label": "Stackbit Model Type",
+                    "description": "Stackbit model type",
+                    "const": "object",
+                    "hidden": true
+                }
+            ],
+            "name": "features_section",
+            "hideContent": true
+        },
+        {
+            "type": "object",
+            "label": "Hero Section",
+            "labelField": "title",
+            "fields": [
+                {
+                    "type": "string",
+                    "name": "title",
+                    "label": "Title",
+                    "description": "The title of the section"
+                },
+                {
+                    "type": "string",
+                    "name": "subtitle",
+                    "label": "Subtitle",
+                    "description": "The subtitle of the section"
+                },
+                {
+                    "type": "list",
+                    "name": "actions",
+                    "label": "Action Buttons",
+                    "items": {
+                        "type": "model",
+                        "models": [
+                            "action"
+                        ]
+                    }
+                },
+                {
+                    "type": "enum",
+                    "name": "align",
+                    "label": "Align",
+                    "options": [
+                        "left",
+                        "right",
+                        "center"
+                    ],
+                    "default": "left",
+                    "description": "The alignment of the text content"
+                },
+                {
+                    "type": "image",
+                    "name": "image",
+                    "label": "Image",
+                    "description": "The image of the section"
+                },
+                {
+                    "type": "enum",
+                    "name": "image_position",
+                    "label": "Image Position",
+                    "options": [
+                        "left",
+                        "right"
+                    ],
+                    "default": "left",
+                    "description": "The position of the image"
+                },
+                {
+                    "type": "boolean",
+                    "name": "has_background",
+                    "label": "Enable section background",
+                    "default": false
+                },
+                {
+                    "type": "object",
+                    "name": "background",
+                    "label": "Background Configuration",
+                    "fields": [
+                        {
+                            "type": "enum",
+                            "name": "background_color",
+                            "label": "Background Color",
+                            "options": [
+                                "white",
+                                "gray",
+                                "blue"
+                            ],
+                            "default": "white",
+                            "description": "The background color of the section"
+                        },
+                        {
+                            "type": "image",
+                            "name": "background_image",
+                            "label": "Background Image",
+                            "description": "The image displayed in the background of the section"
+                        },
+                        {
+                            "type": "number",
+                            "name": "background_image_opacity",
+                            "label": "Background Image Opacity",
+                            "description": "An integer between 0 and 100. A lower value makes the image more transparent."
+                        },
+                        {
+                            "type": "enum",
+                            "name": "background_image_size",
+                            "label": "Background Image Size",
+                            "options": [
+                                "auto",
+                                "contain",
+                                "cover"
+                            ],
+                            "default": "cover",
+                            "description": "The size of the background image"
+                        },
+                        {
+                            "type": "enum",
+                            "name": "background_image_repeat",
+                            "label": "Background Image Repeat",
+                            "options": [
+                                "repeat",
+                                "no-repeat"
+                            ],
+                            "default": "no-repeat",
+                            "description": "Repeat the image to cover the whole area."
+                        }
+                    ]
+                },
+                {
+                    "type": "string",
+                    "name": "type",
+                    "label": "Object Type",
+                    "description": "The type of the object",
+                    "const": "hero_section",
+                    "hidden": true
+                },
+                {
+                    "type": "string",
+                    "name": "stackbit_model_type",
+                    "label": "Stackbit Model Type",
+                    "description": "Stackbit model type",
+                    "const": "object",
+                    "hidden": true
+                }
+            ],
+            "name": "hero_section",
+            "hideContent": true
+        },
+        {
+            "type": "object",
+            "label": "Team Section",
+            "labelField": "title",
+            "fields": [
+                {
+                    "type": "string",
+                    "name": "title",
+                    "label": "Title",
+                    "description": "The title of the section"
+                },
+                {
+                    "type": "list",
+                    "name": "team",
+                    "label": "Team",
+                    "items": {
+                        "type": "reference",
+                        "models": [
+                            "person"
+                        ]
+                    }
+                },
+                {
+                    "type": "string",
+                    "name": "type",
+                    "label": "Object Type",
+                    "description": "The type of the object",
+                    "const": "team_section",
+                    "hidden": true
+                },
+                {
+                    "type": "string",
+                    "name": "stackbit_model_type",
+                    "label": "Stackbit Model Type",
+                    "description": "Stackbit model type",
+                    "const": "object",
+                    "hidden": true
+                }
+            ],
+            "name": "team_section",
+            "hideContent": true
+        },
+        {
+            "type": "object",
+            "label": "Feature",
+            "labelField": "title",
+            "fields": [
+                {
+                    "type": "string",
+                    "name": "title",
+                    "label": "Title",
+                    "description": "The title of the feature"
+                },
+                {
+                    "type": "markdown",
+                    "name": "content",
+                    "label": "Content",
+                    "description": "The text content of the feature"
+                },
+                {
+                    "type": "enum",
+                    "name": "align",
+                    "label": "Align",
+                    "options": [
+                        "left",
+                        "right",
+                        "center"
+                    ],
+                    "default": "left",
+                    "description": "The alignment of the text content"
+                },
+                {
+                    "type": "image",
+                    "name": "image",
+                    "label": "Image",
+                    "description": "The position of the image"
+                },
+                {
+                    "type": "enum",
+                    "name": "image_position",
+                    "label": "Image Position",
+                    "options": [
+                        "left",
+                        "right"
+                    ],
+                    "default": "left",
+                    "description": "The position of the image"
+                },
+                {
+                    "type": "list",
+                    "name": "actions",
+                    "label": "Action Buttons",
+                    "items": {
+                        "type": "model",
+                        "models": [
+                            "action"
+                        ]
+                    }
+                },
+                {
+                    "type": "string",
+                    "name": "type",
+                    "label": "Object Type",
+                    "description": "The type of the object",
+                    "const": "feature",
+                    "hidden": true
+                },
+                {
+                    "type": "string",
+                    "name": "stackbit_model_type",
+                    "label": "Stackbit Model Type",
+                    "description": "Stackbit model type",
+                    "const": "object",
+                    "hidden": true
+                }
+            ],
+            "name": "feature",
+            "hideContent": true
+        },
+        {
+            "type": "object",
+            "label": "Action",
+            "labelField": "label",
+            "fields": [
+                {
+                    "type": "string",
+                    "name": "label",
+                    "label": "Label",
+                    "required": true
+                },
+                {
+                    "type": "string",
+                    "name": "url",
+                    "label": "URL",
+                    "required": true,
+                    "widget": "url"
+                },
+                {
+                    "type": "enum",
+                    "name": "style",
+                    "label": "Style",
+                    "options": [
+                        "link",
+                        "primary",
+                        "secondary"
+                    ],
+                    "default": "link",
+                    "required": true
+                },
+                {
+                    "type": "boolean",
+                    "name": "new_window",
+                    "label": "Open in new tab/window",
+                    "default": false
+                },
+                {
+                    "type": "string",
+                    "name": "type",
+                    "label": "Object Type",
+                    "description": "The type of the object",
+                    "const": "action",
+                    "hidden": true
+                },
+                {
+                    "type": "string",
+                    "name": "stackbit_model_type",
+                    "label": "Stackbit Model Type",
+                    "description": "Stackbit model type",
+                    "const": "object",
+                    "hidden": true
+                }
+            ],
+            "name": "action",
+            "hideContent": true
+        }
+    ],
+    "content": [
+        {
+            "modelType": "data",
+            "modelName": "config",
+            "relPath": "config.json",
+            "data": {
+                "stackbit_model_type": "data",
+                "title": "Stackbit Starter Theme",
+                "path_prefix": "/",
+                "description": "An ultra customizable generic theme for Stackbit",
+                "header": {
+                    "type": "header",
+                    "title": "Starter",
+                    "has_nav": true,
+                    "nav_links": [
+                        {
+                            "type": "action",
+                            "label": "Features",
+                            "url": "/features",
+                            "style": "link",
+                            "stackbit_model_type": "object"
+                        },
+                        {
+                            "type": "action",
+                            "label": "Blog",
+                            "url": "/blog",
+                            "style": "link",
+                            "stackbit_model_type": "object"
+                        },
+                        {
+                            "type": "action",
+                            "label": "About",
+                            "url": "/about",
+                            "style": "link",
+                            "stackbit_model_type": "object"
+                        },
+                        {
+                            "type": "action",
+                            "label": "Style Guide",
+                            "url": "/style-guide",
+                            "style": "link",
+                            "stackbit_model_type": "object"
+                        },
+                        {
+                            "type": "action",
+                            "label": "Contact Us",
+                            "url": "/contact",
+                            "style": "primary",
+                            "stackbit_model_type": "object"
+                        }
+                    ],
+                    "stackbit_model_type": "object"
+                },
+                "footer": {
+                    "type": "footer",
+                    "has_nav": true,
+                    "nav_links": [
+                        {
+                            "type": "action",
+                            "label": "Contact Us",
+                            "url": "/contact",
+                            "style": "link",
+                            "stackbit_model_type": "object"
+                        },
+                        {
+                            "type": "action",
+                            "label": "Privacy and Terms",
+                            "url": "/terms",
+                            "style": "link",
+                            "stackbit_model_type": "object"
+                        }
+                    ],
+                    "has_social": true,
+                    "social_links": [
+                        {
+                            "type": "action",
+                            "label": "Twitter",
+                            "url": "https://twitter.com/",
+                            "style": "link",
+                            "new_window": true,
+                            "stackbit_model_type": "object"
+                        },
+                        {
+                            "type": "action",
+                            "label": "GitHub",
+                            "url": "https://github.com/",
+                            "style": "link",
+                            "new_window": true,
+                            "stackbit_model_type": "object"
+                        },
+                        {
+                            "type": "action",
+                            "label": "LinkedIn",
+                            "url": "https://www.linkedin.com/",
+                            "style": "link",
+                            "new_window": true,
+                            "stackbit_model_type": "object"
+                        }
+                    ],
+                    "content": "&copy; Stackbit-Starter. All rights reserved.",
+                    "links": [
+                        {
+                            "type": "action",
+                            "label": "Made with Stackbit.",
+                            "url": "https://www.stackbit.com",
+                            "style": "link",
+                            "new_window": true,
+                            "stackbit_model_type": "object"
+                        }
+                    ],
+                    "stackbit_model_type": "object"
+                },
+                "stackbit_file_path": "content/data/config.json"
+            }
+        },
+        {
+            "modelType": "data",
+            "modelName": "category",
+            "relPath": "categories/general.yaml",
+            "data": {
+                "stackbit_model_type": "data",
+                "id": "general",
+                "link": "blog/category/general",
+                "title": "General",
+                "type": "category"
+            }
+        },
+        {
+            "modelType": "data",
+            "modelName": "category",
+            "relPath": "categories/news.yaml",
+            "data": {
+                "stackbit_model_type": "data",
+                "id": "news",
+                "link": "blog/category/news",
+                "title": "News",
+                "type": "category"
+            }
+        },
+        {
+            "modelType": "data",
+            "modelName": "category",
+            "relPath": "categories/tutorials.yaml",
+            "data": {
+                "stackbit_model_type": "data",
+                "id": "tutorials",
+                "link": "blog/category/tutorials",
+                "title": "Tutorials",
+                "type": "category"
+            }
+        },
+        {
+            "modelType": "data",
+            "modelName": "person",
+            "relPath": "team/dianne-ameter.yaml",
+            "data": {
+                "stackbit_model_type": "data",
+                "id": "dianne-ameter",
+                "link": "blog/author/dianne-ameter",
+                "first_name": "Dianne",
+                "last_name": "Ameter",
+                "photo": "images/dianne-ameter.jpg",
+                "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ligula, cursus id molestie vel, maximus aliquet risus.",
+                "type": "person"
+            }
+        },
+        {
+            "modelType": "data",
+            "modelName": "person",
+            "relPath": "team/eleanor-carr.yaml",
+            "data": {
+                "stackbit_model_type": "data",
+                "id": "eleanor-carr",
+                "first_name": "Eleanor",
+                "last_name": "Carr",
+                "photo": "images/eleanor-carr.jpg",
+                "bio": "Enim sit amet venenatis urna cursus eget nunc scelerisque viverra. Ligula ullamcorper malesuada proin libero nunc consequat interdum.",
+                "type": "person"
+            }
+        },
+        {
+            "modelType": "data",
+            "modelName": "person",
+            "relPath": "team/gordon-norman.yaml",
+            "data": {
+                "stackbit_model_type": "data",
+                "id": "gordon-norman",
+                "link": "blog/author/gordon-norman",
+                "first_name": "Gordon",
+                "last_name": "Norman",
+                "photo": "images/gordon-norman.jpg",
+                "bio": "Sagittis nisl rhoncus mattis rhoncus urna neque viverra. In est ante in nibh mauris cursus mattis molestie porta non pulvinar neque.",
+                "type": "person"
+            }
+        },
+        {
+            "modelType": "data",
+            "modelName": "person",
+            "relPath": "team/hanson-deck.yaml",
+            "data": {
+                "stackbit_model_type": "data",
+                "id": "hanson-deck",
+                "first_name": "Hanson",
+                "last_name": "Deck",
+                "photo": "images/hanson-deck.jpg",
+                "bio": "Suspendisse ante mi, tincidunt sit amet odio sed, condimentum ultricies nunc. Nam iaculis commodo dui quis suscipit. Ut eu porttitor enim.",
+                "type": "person"
+            }
+        },
+        {
+            "modelType": "data",
+            "modelName": "person",
+            "relPath": "team/miles-tone.yaml",
+            "data": {
+                "stackbit_model_type": "data",
+                "id": "miles-tone",
+                "link": "blog/author/miles-tone",
+                "first_name": "Miles",
+                "last_name": "Tone",
+                "photo": "images/miles-tone.jpg",
+                "bio": "Aliquam vestibulum morbi blandit cursus risus at ultrices mi. Massa placerat duis ultricies lacus. Amet justo donec enim diam.",
+                "type": "person"
+            }
+        },
+        {
+            "modelType": "page",
+            "modelName": "advanced",
+            "relPath": "about.md",
+            "data": {
+                "stackbit_model_type": "page",
+                "title": "Who We Are",
+                "sections": [
+                    {
+                        "type": "hero_section",
+                        "title": "Who We Are",
+                        "align": "center",
+                        "stackbit_model_type": "object"
+                    },
+                    {
+                        "type": "content_section",
+                        "content": "Nisi porta lorem mollis aliquam ut porttitor. Pellentesque dignissim enim sit amet venenatis urna cursus eget nunc. Dui nunc mattis enim ut tellus. Eu sem integer vitae justo eget magna fermentum. Habitant morbi tristique senectus et netus et malesuada fames. Ipsum dolor sit amet consectetur adipiscing elit pellentesque habitant.\n\nAliquet lectus proin nibh nisl condimentum id venenatis a condimentum. Ac felis donec et odio pellentesque. Sem nulla pharetra diam sit amet. Egestas tellus rutrum tellus pellentesque eu. Auctor augue mauris augue neque. Lectus arcu bibendum at varius vel pharetra. Enim sed faucibus turpis in eu mi bibendum neque egestas.",
+                        "stackbit_model_type": "object"
+                    },
+                    {
+                        "type": "team_section",
+                        "title": "Our Team",
+                        "team": [
+                            "content/data/team/miles-tone.yaml",
+                            "content/data/team/dianne-ameter.yaml",
+                            "content/data/team/eleanor-carr.yaml",
+                            "content/data/team/hanson-deck.yaml",
+                            "content/data/team/gordon-norman.yaml"
+                        ],
+                        "stackbit_model_type": "object"
+                    },
+                    {
+                        "type": "cta_section",
+                        "title": "Join the Team",
+                        "subtitle": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                        "actions": [
+                            {
+                                "type": "action",
+                                "label": "Contact Us",
+                                "url": "/contact",
+                                "style": "secondary",
+                                "stackbit_model_type": "object"
+                            }
+                        ],
+                        "has_background": true,
+                        "background_color": "blue",
+                        "stackbit_model_type": "object"
+                    }
+                ],
+                "layout": "advanced",
+                "stackbit_url_path": "/about",
+                "stackbit_dir": "content/pages"
+            }
+        },
+        {
+            "modelType": "page",
+            "modelName": "advanced",
+            "relPath": "blog/author/dianne-ameter.md",
+            "data": {
+                "stackbit_model_type": "page",
+                "title": "Dianne Ameter",
+                "sections": [
+                    {
+                        "type": "hero_section",
+                        "title": "All Posts By Dianne Ameter",
+                        "align": "center",
+                        "stackbit_model_type": "object"
+                    },
+                    {
+                        "type": "blog_feed_section",
+                        "show_recent": false,
+                        "author": "content/data/team/dianne-ameter.yaml",
+                        "stackbit_model_type": "object"
+                    }
+                ],
+                "layout": "advanced",
+                "stackbit_url_path": "/blog/author/dianne-ameter",
+                "stackbit_dir": "content/pages"
+            }
+        },
+        {
+            "modelType": "page",
+            "modelName": "advanced",
+            "relPath": "blog/author/gordon-norman.md",
+            "data": {
+                "stackbit_model_type": "page",
+                "title": "Gordon Norman",
+                "sections": [
+                    {
+                        "type": "hero_section",
+                        "title": "All Posts By Gordon Norman",
+                        "align": "center",
+                        "stackbit_model_type": "object"
+                    },
+                    {
+                        "type": "blog_feed_section",
+                        "show_recent": false,
+                        "author": "content/data/team/gordon-norman.yaml",
+                        "stackbit_model_type": "object"
+                    }
+                ],
+                "layout": "advanced",
+                "stackbit_url_path": "/blog/author/gordon-norman",
+                "stackbit_dir": "content/pages"
+            }
+        },
+        {
+            "modelType": "page",
+            "modelName": "advanced",
+            "relPath": "blog/author/miles-tone.md",
+            "data": {
+                "stackbit_model_type": "page",
+                "title": "Miles Tone",
+                "sections": [
+                    {
+                        "type": "hero_section",
+                        "title": "All Posts By Miles Tone",
+                        "align": "center",
+                        "stackbit_model_type": "object"
+                    },
+                    {
+                        "type": "blog_feed_section",
+                        "show_recent": false,
+                        "author": "content/data/team/miles-tone.yaml",
+                        "stackbit_model_type": "object"
+                    }
+                ],
+                "layout": "advanced",
+                "stackbit_url_path": "/blog/author/miles-tone",
+                "stackbit_dir": "content/pages"
+            }
+        },
+        {
+            "modelType": "page",
+            "modelName": "advanced",
+            "relPath": "blog/category/general.md",
+            "data": {
+                "stackbit_model_type": "page",
+                "title": "General",
+                "sections": [
+                    {
+                        "type": "hero_section",
+                        "title": "All Posts In General",
+                        "align": "center",
+                        "stackbit_model_type": "object"
+                    },
+                    {
+                        "type": "blog_feed_section",
+                        "show_recent": false,
+                        "category": "content/data/categories/general.yaml",
+                        "stackbit_model_type": "object"
+                    }
+                ],
+                "layout": "advanced",
+                "stackbit_url_path": "/blog/category/general",
+                "stackbit_dir": "content/pages"
+            }
+        },
+        {
+            "modelType": "page",
+            "modelName": "advanced",
+            "relPath": "blog/category/news.md",
+            "data": {
+                "stackbit_model_type": "page",
+                "title": "News",
+                "sections": [
+                    {
+                        "type": "hero_section",
+                        "title": "All Posts In News",
+                        "align": "center",
+                        "stackbit_model_type": "object"
+                    },
+                    {
+                        "type": "blog_feed_section",
+                        "show_recent": false,
+                        "category": "content/data/categories/news.yaml",
+                        "stackbit_model_type": "object"
+                    }
+                ],
+                "layout": "advanced",
+                "stackbit_url_path": "/blog/category/news",
+                "stackbit_dir": "content/pages"
+            }
+        },
+        {
+            "modelType": "page",
+            "modelName": "advanced",
+            "relPath": "blog/category/tutorials.md",
+            "data": {
+                "stackbit_model_type": "page",
+                "title": "Tutorials",
+                "sections": [
+                    {
+                        "type": "hero_section",
+                        "title": "All Posts In Tutorials",
+                        "align": "center",
+                        "stackbit_model_type": "object"
+                    },
+                    {
+                        "type": "blog_feed_section",
+                        "show_recent": false,
+                        "category": "content/data/categories/tutorials.yaml",
+                        "stackbit_model_type": "object"
+                    }
+                ],
+                "layout": "advanced",
+                "stackbit_url_path": "/blog/category/tutorials",
+                "stackbit_dir": "content/pages"
+            }
+        },
+        {
+            "modelType": "page",
+            "modelName": "advanced",
+            "relPath": "blog/index.md",
+            "data": {
+                "stackbit_model_type": "page",
+                "title": "Blog",
+                "sections": [
+                    {
+                        "type": "hero_section",
+                        "title": "Blog",
+                        "align": "center",
+                        "stackbit_model_type": "object"
+                    },
+                    {
+                        "type": "blog_feed_section",
+                        "show_recent": false,
+                        "stackbit_model_type": "object"
+                    }
+                ],
+                "layout": "advanced",
+                "stackbit_url_path": "/blog/",
+                "stackbit_dir": "content/pages"
+            }
+        },
+        {
+            "modelType": "page",
+            "modelName": "post",
+            "relPath": "blog/post-1.md",
+            "data": {
+                "stackbit_model_type": "page",
+                "title": "Utrum Igitur Tibi Litteram Videor An Totas Paginas",
+                "date": "2020-04-16",
+                "author": "content/data/team/dianne-ameter.yaml",
+                "categories": [
+                    "content/data/categories/tutorials.yaml",
+                    "content/data/categories/general.yaml"
+                ],
+                "image": "images/1.png",
+                "excerpt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ea mala virtuti magnitudine obruebantur. Duo Reges: constructio interrete.",
+                "layout": "post",
+                "stackbit_url_path": "/blog/post-1",
+                "stackbit_dir": "content/pages",
+                "content": "\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ea mala virtuti magnitudine obruebantur. Duo Reges: constructio interrete. An hoc usque quaque, aliter in vita? Gracchum patrem non beatiorem fuisse quam fillum, cum alter stabilire rem publicam studuerit, alter evertere. Quo plebiscito decreta a senatu est consuli quaestio Cn. Illud non continuo, ut aeque incontentae. Atqui pugnantibus et contrariis studiis consiliisque semper utens nihil quieti videre, nihil tranquilli potest. Itaque hoc frequenter dici solet a vobis, non intellegere nos, quam dicat Epicurus voluptatem. Sin kakan malitiam dixisses, ad aliud nos unum certum vitium consuetudo Latina traduceret.\n\n## Sed Ille, UT Dixi, Vitiose\n\nUtrum igitur tibi litteram videor an totas paginas commovere? Potius inflammat, ut coercendi magis quam dedocendi esse videantur. Ne in odium veniam, si amicum destitero tueri. Ne amores quidem sanctos a sapiente alienos esse arbitrantur. Quid ergo aliud intellegetur nisi uti ne quae pars naturae neglegatur? Quis istud, quaeso, nesciebat? Primum divisit ineleganter; Hoc unum Aristo tenuit: praeter vitia atque virtutes negavit rem esse ullam aut fugiendam aut expetendam. Et ille ridens: Video, inquit, quid agas; In his igitur partibus duabus nihil erat, quod Zeno commutare gestiret.\n\nNemo nostrum istius generis asotos iucunde putat vivere.\nEst enim tanti philosophi tamque nobilis audacter sua decreta defendere. Sed eum qui audiebant, quoad poterant, defendebant sententiam suam. Atqui, inquam, Cato, si istud optinueris, traducas me ad te totum licebit. Quam ob rem tandem, inquit, non satisfacit? Vestri haec verecundius, illi fortasse constantius. Quorum sine causa fieri nihil putandum est. Non modo carum sibi quemque, verum etiam vehementer carum esse? Nemo nostrum istius generis asotos iucunde putat vivere.\n\nExpressa vero in iis aetatibus, quae iam confirmatae sunt.\nNe amores quidem sanctos a sapiente alienos esse arbitrantur. Quid enim de amicitia statueris utilitatis causa expetenda vides. Nihil acciderat ei, quod nollet, nisi quod anulum, quo delectabatur, in mari abiecerat. Quid enim possumus hoc agere divinius? Dic in quovis conventu te omnia facere, ne doleas. Omnes enim iucundum motum, quo sensus hilaretur. Hoc loco discipulos quaerere videtur, ut, qui asoti esse velint, philosophi ante fiant. Hoc loco tenere se Triarius non potuit. Nunc haec primum fortasse audientis servire debemus. Sin dicit obscurari quaedam nec apparere, quia valde parva sint, nos quoque concedimus; Isto modo ne improbos quidem, si essent boni viri. Quid censes in Latino fore?\n\nQuae diligentissime contra Aristonem dicuntur a Chryippo. Huius ego nunc auctoritatem sequens idem faciam. Quare obscurentur etiam haec, quae secundum naturam esse dicimus, in vita beata; Ad corpus diceres pertinere-, sed ea, quae dixi, ad corpusne refers? Huius, Lyco, oratione locuples, rebus ipsis ielunior. Aliter homines, aliter philosophos loqui putas oportere? Qui autem esse poteris, nisi te amor ipse ceperit? Aliter autem vobis placet. Compensabatur, inquit, cum summis doloribus laetitia.\n"
+            }
+        },
+        {
+            "modelType": "page",
+            "modelName": "post",
+            "relPath": "blog/post-2.md",
+            "data": {
+                "stackbit_model_type": "page",
+                "title": "Non Minor, Inquit, Voluptas Percipitur Ex Vilissimis",
+                "date": "2020-05-25",
+                "author": "content/data/team/miles-tone.yaml",
+                "categories": [
+                    "content/data/categories/news.yaml",
+                    "content/data/categories/general.yaml"
+                ],
+                "tags": [
+                    "Jamstack",
+                    "Netlify"
+                ],
+                "image": "images/2.png",
+                "excerpt": "Quae diligentissime contra Aristonem dicuntur a Chryippo. Videamus igitur sententias eorum, tum ad verba redeamus. Levatio igitur vitiorum magna.",
+                "layout": "post",
+                "stackbit_url_path": "/blog/post-2",
+                "stackbit_dir": "content/pages",
+                "content": "\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Negat esse eam, inquit, propter se expetendam. Nam de isto magna dissensio est. Nullum inveniri verbum potest quod magis idem declaret Latine, quod Graece, quam declarat voluptas. Idemne potest esse dies saepius, qui semel fuit? Non est ista, inquam, Piso, magna dissensio. Ita multo sanguine profuso in laetitia et in victoria est mortuus. Quasi vero, inquit, perpetua oratio rhetorum solum, non etiam philosophorum sit. Duo Reges: constructio interrete.\n\nQuae diligentissime contra Aristonem dicuntur a Chryippo. Videamus igitur sententias eorum, tum ad verba redeamus. Levatio igitur vitiorum magna fit in iis, qui habent ad virtutem progressionis aliquantum. Virtutis, magnitudinis animi, patientiae, fortitudinis fomentis dolor mitigari solet. Nihil enim hoc differt. Quorum sine causa fieri nihil putandum est.\n\n## Sed Nimis Multa\n\nAn potest cupiditas finiri? Quamquam te quidem video minime esse deterritum. Sit, inquam, tam facilis, quam vultis, comparatio voluptatis, quid de dolore dicemus? Quae qui non vident, nihil umquam magnum ac cognitione dignum amaverunt.\n\n> Ita est quoddam commune officium sapientis et insipientis, ex quo efficitur versari in iis, quae media dicamus.\n\nOmnes enim iucundum motum, quo sensus hilaretur. Hoc est non dividere, sed frangere. Sed ne, dum huic obsequor, vobis molestus sim. Efficiens dici potest. Quia dolori non voluptas contraria est, sed doloris privatio. Quid dubitas igitur mutare principia naturae? Atqui eorum nihil est eius generis, ut sit in fine atque extrerno bonorum. Idemque diviserunt naturam hominis in animum et corpus. Si enim ad populum me vocas, eum. Sed tu istuc dixti bene Latine, parum plane.\n\nUnum nescio, quo modo possit, si luxuriosus sit, finitas cupiditates habere. **Audeo dicere, inquit.** Perturbationes autem nulla naturae vi commoventur, omniaque ea sunt opiniones ac iudicia levitatis. Nunc haec primum fortasse audientis servire debemus. Nihil ad rem! Ne sit sane; Et certamen honestum et disputatio splendida! omnis est enim de virtutis dignitate contentio. Quonam, inquit, modo? Nullum inveniri verbum potest quod magis idem declaret Latine, quod Graece, quam declarat voluptas. Hoc ille tuus non vult omnibusque ex rebus voluptatem quasi mercedem exigit.\n\n- Fortitudinis quaedam praecepta sunt ac paene leges, quae effeminari - virum vetant in dolore.\n- Non igitur bene.\n\nMaximas vero virtutes iacere omnis necesse est voluptate dominante.\n"
+            }
+        },
+        {
+            "modelType": "page",
+            "modelName": "post",
+            "relPath": "blog/post-3.md",
+            "data": {
+                "stackbit_model_type": "page",
+                "title": "Cur Ipse Pythagoras Et Aegyptum Lustravit",
+                "date": "2020-05-28",
+                "author": "content/data/team/gordon-norman.yaml",
+                "categories": [
+                    "content/data/categories/general.yaml"
+                ],
+                "tags": [
+                    "Stackbit",
+                    "JAMstack"
+                ],
+                "image": "images/3.png",
+                "excerpt": "Quis est, qui non oderit libidinosam, protervam adolescentiam? Innumerabilia dici possunt in hanc sententiam, sed non necesse est. Putabam equidem satis, inquit, me dixisse.",
+                "layout": "post",
+                "stackbit_url_path": "/blog/post-3",
+                "stackbit_dir": "content/pages",
+                "content": "\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Non est ista, inquam, Piso, magna dissensio. Callipho ad virtutem nihil adiunxit nisi voluptatem, Diodorus vacuitatem doloris. Aut haec tibi, Torquate, sunt vituperanda aut patrocinium voluptatis repudiandum. Invidiosum nomen est, infame, suspectum. Dolor ergo, id est summum malum, metuetur semper, etiamsi non aderit; Duo Reges: constructio interrete. Innumerabilia dici possunt in hanc sententiam, sed non necesse est. Quae fere omnia appellantur uno ingenii nomine, easque virtutes qui habent, ingeniosi vocantur. Ut aliquid scire se gaudeant?\n\nQuis est, qui non oderit libidinosam, protervam adolescentiam? Innumerabilia dici possunt in hanc sententiam, sed non necesse est. Putabam equidem satis, inquit, me dixisse. Quid igitur, inquit, eos responsuros putas? Age, inquies, ista parva sunt. Negabat igitur ullam esse artem, quae ipsa a se proficisceretur;\n\nCur ipse Pythagoras et Aegyptum lustravit et Persarum magos adiit? Ex ea difficultate illae fallaciloquae, ut ait Accius, malitiae natae sunt. Quorum sine causa fieri nihil putandum est. Sit enim idem caecus, debilis. Qui-vere falsone, quaerere mittimus-dicitur oculis se privasse; Intrandum est igitur in rerum naturam et penitus quid ea postulet pervidendum; Urgent tamen et nihil remittunt. Quae contraria sunt his, malane? Nihil acciderat ei, quod nollet, nisi quod anulum, quo delectabatur, in mari abiecerat. Atque his de rebus et splendida est eorum et illustris oratio. Haec para/doca illi, nos admirabilia dicamus. Non est ista, inquam, Piso, magna dissensio.\n"
+            }
+        },
+        {
+            "modelType": "page",
+            "modelName": "post",
+            "relPath": "blog/post-4.md",
+            "data": {
+                "stackbit_model_type": "page",
+                "title": "Vos Autem Cum Perspicuis Dubia Debeatis Illustrare",
+                "date": "2020-05-30",
+                "author": "content/data/team/dianne-ameter.yaml",
+                "categories": [
+                    "content/data/categories/tutorials.yaml",
+                    "content/data/categories/news.yaml"
+                ],
+                "tags": [
+                    "JAMstack",
+                    "Sourcebit"
+                ],
+                "image": "images/4.png",
+                "excerpt": "Itaque hoc frequenter dici solet a vobis, non intellegere nos, quam dicat Epicurus voluptatem. Sin kakan malitiam dixisses, ad aliud nos unum certum vitium consuetudo Latina traduceret.",
+                "layout": "post",
+                "stackbit_url_path": "/blog/post-4",
+                "stackbit_dir": "content/pages",
+                "content": "\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Teneo, inquit, finem illi videri nihil dolere. Quid est enim aliud esse versutum. Age, inquies, ista parva sunt. Verum hoc idem saepe faciamus. Atque ab his initiis profecti omnium virtutum et originem et progressionem persecuti sunt. Duo Reges: constructio interrete. Itaque eos id agere, ut a se dolores, morbos, debilitates repellant. Estne, quaeso, inquam, sitienti in bibendo voluptas? Iam in altera philosophiae parte. Quem Tiberina descensio festo illo die tanto gaudio affecit, quanto L.\n\n- Restinguet citius, si ardentem acceperit.\n- Te enim iudicem aequum puto, modo quae dicat ille bene noris.\n- Quid, quod homines infima fortuna, nulla spe rerum gerendarum, opifices denique delectantur historia?\n- Quo minus animus a se ipse dissidens secumque discordans gustare partem ullam liquidae voluptatis et liberae potest.\n\n**Quippe: habes enim a rhetoribus;** Vos autem cum perspicuis dubia debeatis illustrare, dubiis perspicua conamini tollere. Hoc dixerit potius Ennius: Nimium boni est, cui nihil est mali. Sic consequentibus vestris sublatis prima tolluntur. Negat esse eam, inquit, propter se expetendam. Ergo, si semel tristior effectus est, hilara vita amissa est.\n"
+            }
+        },
+        {
+            "modelType": "page",
+            "modelName": "post",
+            "relPath": "blog/post-5.md",
+            "data": {
+                "stackbit_model_type": "page",
+                "title": "Amet Nulla Facilisi Morbi Tempus",
+                "date": "2020-06-02",
+                "author": "content/data/team/gordon-norman.yaml",
+                "categories": [
+                    "content/data/categories/tutorials.yaml"
+                ],
+                "tags": [
+                    "Stackbit",
+                    "Netlify"
+                ],
+                "image": "images/5.png",
+                "excerpt": "Estne, quaeso, inquam, sitienti in bibendo voluptas? Iam in altera philosophiae parte. Quem Tiberina descensio festo illo die tanto gaudio affecit, quanto.",
+                "layout": "post",
+                "stackbit_url_path": "/blog/post-5",
+                "stackbit_dir": "content/pages",
+                "content": "\nDonec ultrices tincidunt arcu non sodales neque. Et netus et malesuada fames ac turpis egestas sed tempus. Cras pulvinar mattis nunc sed. Turpis cursus in hac habitasse platea dictumst quisque sagittis. Sollicitudin nibh sit amet commodo nulla facilisi nullam. Posuere ac ut consequat semper viverra nam. Ac tortor vitae purus faucibus ornare suspendisse sed nisi lacus. Egestas sed sed risus pretium quam vulputate dignissim suspendisse in. Tempor orci eu lobortis elementum nibh. Senectus et netus et malesuada fames ac turpis egestas integer. Id cursus metus aliquam eleifend mi in nulla posuere sollicitudin. Sed nisi lacus sed viverra tellus. Non curabitur gravida arcu ac tortor dignissim convallis aenean.\n\nSem et tortor consequat id porta. Diam sit amet nisl suscipit adipiscing bibendum est ultricies. Amet nulla facilisi morbi tempus. Blandit massa enim nec dui nunc mattis. Non enim praesent elementum facilisis leo vel fringilla est. Eleifend quam adipiscing vitae proin sagittis nisl rhoncus. Mauris pellentesque pulvinar pellentesque habitant morbi tristique senectus et netus. Eget nunc lobortis mattis aliquam faucibus purus. Volutpat ac tincidunt vitae semper quis. Cursus eget nunc scelerisque viverra mauris. Purus semper eget duis at tellus at urna. Mauris commodo quis imperdiet massa tincidunt nunc pulvinar sapien. Sit amet consectetur adipiscing elit pellentesque habitant morbi tristique senectus. Nunc non blandit massa enim nec. Ut porttitor leo a diam sollicitudin.\n\nTincidunt tortor aliquam nulla facilisi cras. Id semper risus in hendrerit. Magna fermentum iaculis eu non. At consectetur lorem donec massa sapien faucibus et. Est placerat in egestas erat imperdiet sed euismod nisi porta. Lacus vel facilisis volutpat est velit egestas dui. Sapien pellentesque habitant morbi tristique senectus et. Ut tellus elementum sagittis vitae et. Et malesuada fames ac turpis. Volutpat commodo sed egestas egestas. Praesent tristique magna sit amet purus gravida quis. Turpis egestas pretium aenean pharetra.\n"
+            }
+        },
+        {
+            "modelType": "page",
+            "modelName": "advanced",
+            "relPath": "contact.md",
+            "data": {
+                "stackbit_model_type": "page",
+                "title": "Contact",
+                "sections": [
+                    {
+                        "type": "hero_section",
+                        "title": "Contact",
+                        "align": "center",
+                        "stackbit_model_type": "object"
+                    },
+                    {
+                        "type": "contact_section",
+                        "stackbit_model_type": "object"
+                    }
+                ],
+                "layout": "advanced",
+                "stackbit_url_path": "/contact",
+                "stackbit_dir": "content/pages"
+            }
+        },
+        {
+            "modelType": "page",
+            "modelName": "advanced",
+            "relPath": "features.md",
+            "data": {
+                "stackbit_model_type": "page",
+                "title": "Features",
+                "sections": [
+                    {
+                        "type": "hero_section",
+                        "title": "Features",
+                        "subtitle": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                        "align": "center",
+                        "stackbit_model_type": "object"
+                    },
+                    {
+                        "type": "features_section",
+                        "features": [
+                            {
+                                "type": "feature",
+                                "title": "Feature 1",
+                                "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ligula, cursus id molestie vel, maximus aliquet risus. Vivamus in nibh fringilla, fringilla.",
+                                "align": "left",
+                                "image": "images/feature.svg",
+                                "image_position": "right",
+                                "actions": [
+                                    {
+                                        "type": "action",
+                                        "label": "Learn More",
+                                        "url": "/about",
+                                        "style": "primary",
+                                        "stackbit_model_type": "object"
+                                    }
+                                ],
+                                "stackbit_model_type": "object"
+                            },
+                            {
+                                "type": "feature",
+                                "title": "Feature 2",
+                                "content": "Ac felis donec et odio pellentesque. Sagittis vitae et leo duis ut diam quam nulla. Ullamcorper a lacus vestibulum sed arcu non odio euismod lacinia.",
+                                "align": "left",
+                                "image": "images/feature.svg",
+                                "image_position": "left",
+                                "actions": [
+                                    {
+                                        "type": "action",
+                                        "label": "Learn More",
+                                        "url": "/style-guide",
+                                        "style": "primary",
+                                        "stackbit_model_type": "object"
+                                    }
+                                ],
+                                "stackbit_model_type": "object"
+                            },
+                            {
+                                "type": "feature",
+                                "title": "Feature 3",
+                                "content": "Id nibh tortor id aliquet lectus proin. Amet venenatis urna cursus eget nunc. Lacus sed turpis tincidunt id aliquet risus feugiat in ante.",
+                                "align": "left",
+                                "image": "images/feature.svg",
+                                "image_position": "right",
+                                "actions": [
+                                    {
+                                        "type": "action",
+                                        "label": "Learn More",
+                                        "url": "/blog",
+                                        "style": "primary",
+                                        "stackbit_model_type": "object"
+                                    }
+                                ],
+                                "stackbit_model_type": "object"
+                            }
+                        ],
+                        "stackbit_model_type": "object"
+                    }
+                ],
+                "layout": "advanced",
+                "stackbit_url_path": "/features",
+                "stackbit_dir": "content/pages"
+            }
+        },
+        {
+            "modelType": "page",
+            "modelName": "advanced",
+            "relPath": "index.md",
+            "data": {
+                "stackbit_model_type": "page",
+                "title": "Home",
+                "sections": [
+                    {
+                        "type": "hero_section",
+                        "title": "This Is A Big Hero Headline",
+                        "subtitle": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a metus quis lorem malesuada luctus.",
+                        "actions": [
+                            {
+                                "type": "action",
+                                "label": "Learn More",
+                                "url": "/features",
+                                "style": "primary",
+                                "stackbit_model_type": "object"
+                            },
+                            {
+                                "type": "action",
+                                "label": "Contact Us",
+                                "url": "/contact",
+                                "style": "secondary",
+                                "stackbit_model_type": "object"
+                            }
+                        ],
+                        "align": "left",
+                        "image": "images/hero.svg",
+                        "image_position": "right",
+                        "has_background": true,
+                        "background": {
+                            "background_color": "blue",
+                            "background_image": "images/diagonal-lines.svg",
+                            "background_image_opacity": 20,
+                            "background_image_size": "auto",
+                            "background_image_repeat": "repeat"
+                        },
+                        "stackbit_model_type": "object"
+                    },
+                    {
+                        "type": "features_section",
+                        "title": "Features",
+                        "features": [
+                            {
+                                "type": "feature",
+                                "title": "Feature 1",
+                                "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ligula, cursus id molestie vel, maximus aliquet risus. Vivamus in nibh fringilla, fringilla.",
+                                "align": "left",
+                                "image": "images/feature.svg",
+                                "image_position": "right",
+                                "actions": [
+                                    {
+                                        "type": "action",
+                                        "label": "Learn More",
+                                        "url": "/features",
+                                        "style": "secondary",
+                                        "stackbit_model_type": "object"
+                                    }
+                                ],
+                                "stackbit_model_type": "object"
+                            },
+                            {
+                                "type": "feature",
+                                "title": "Feature 2",
+                                "content": "Ac felis donec et odio pellentesque. Sagittis vitae et leo duis ut diam quam nulla. Ullamcorper a lacus vestibulum sed arcu non odio euismod lacinia.",
+                                "align": "left",
+                                "image": "images/feature.svg",
+                                "image_position": "left",
+                                "actions": [
+                                    {
+                                        "type": "action",
+                                        "label": "Learn More",
+                                        "url": "/features",
+                                        "style": "secondary",
+                                        "stackbit_model_type": "object"
+                                    }
+                                ],
+                                "stackbit_model_type": "object"
+                            },
+                            {
+                                "type": "feature",
+                                "title": "Feature 3",
+                                "content": "Id nibh tortor id aliquet lectus proin. Amet venenatis urna cursus eget nunc. Lacus sed turpis tincidunt id aliquet risus feugiat in ante.",
+                                "align": "left",
+                                "image": "images/feature.svg",
+                                "image_position": "right",
+                                "actions": [
+                                    {
+                                        "type": "action",
+                                        "label": "Learn More",
+                                        "url": "/features",
+                                        "style": "secondary",
+                                        "stackbit_model_type": "object"
+                                    }
+                                ],
+                                "stackbit_model_type": "object"
+                            }
+                        ],
+                        "stackbit_model_type": "object"
+                    },
+                    {
+                        "type": "blog_feed_section",
+                        "title": "What's New",
+                        "show_recent": true,
+                        "recent_count": 3,
+                        "stackbit_model_type": "object"
+                    },
+                    {
+                        "type": "cta_section",
+                        "title": "This Is A CTA",
+                        "subtitle": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a metus quis lorem malesuada luctus.",
+                        "actions": [
+                            {
+                                "type": "action",
+                                "label": "Learn More",
+                                "url": "/features",
+                                "style": "primary",
+                                "stackbit_model_type": "object"
+                            }
+                        ],
+                        "has_background": true,
+                        "background_color": "gray",
+                        "stackbit_model_type": "object"
+                    }
+                ],
+                "layout": "advanced",
+                "stackbit_url_path": "/",
+                "stackbit_dir": "content/pages"
+            }
+        },
+        {
+            "modelType": "page",
+            "modelName": "page",
+            "relPath": "style-guide.md",
+            "data": {
+                "stackbit_model_type": "page",
+                "title": "Style Guide",
+                "layout": "page",
+                "stackbit_url_path": "/style-guide",
+                "stackbit_dir": "content/pages",
+                "content": "\nThis is a paragraph. Malesuada bibendum arcu vitae elementum curabitur vitae nunc sed. Fringilla urna porttitor rhoncus dolor purus. Consectetur purus ut faucibus pulvinar. Nullam non nisi est sit. Tellus in metus vulputate eu scelerisque felis. Nunc congue nisi vitae suscipit tellus mauris. Phasellus egestas tellus rutrum tellus pellentesque eu tincidunt. Fermentum iaculis eu non diam phasellus vestibulum. Faucibus turpis in eu mi bibendum neque egestas congue.\n\n# This is an H1\n## This is an H2\n### This is an H3\n#### This is an H4\n##### This is an H5\n###### This is an H6\n\n## Quoting\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Donec pretium vulputate sapien nec sagittis aliquam. Turpis massa sed elementum tempus egestas sed sed. Orci a scelerisque purus semper eget duis at tellus at. Lacus luctus accumsan tortor posuere ac. \n\n> Ipsum dolor sit amet consectetur adipiscing elit ut aliquam purus. Ultrices sagittis orci a scelerisque purus semper eget duis. Pharetra pharetra massa massa ultricies. Felis eget nunc lobortis mattis aliquam. \n\nIn cursus turpis massa tincidunt. Tempor nec feugiat nisl pretium. Odio aenean sed adipiscing diam. Ut aliquam purus sit amet luctus venenatis lectus magna fringilla. Justo laoreet sit amet cursus sit amet dictum. Turpis tincidunt id aliquet risus feugiat in ante metus.\n\n## Unordered and Ordered Lists\n\n+ Donec non tortor in arcu mollis feugiat\n+ Lorem ipsum dolor sit amet, consectetuer adipiscing elit\n+ Donec id eros eget quam aliquam gravida\n+ Vivamus convallis urna id felis\n+ Nulla porta tempus sapien\n\n***\n\n1. Donec non tortor in arcu mollis feugiat\n2. Lorem ipsum dolor sit amet, consectetuer adipiscing elit\n3. Donec id eros eget quam aliquam gravida\n4. Vivamus convallis urna id felis\n5. Nulla porta tempus sapien\n\n## Code Blocks\n\nBlocks of code are either fenced by lines with three back-ticks, or are indented with four spaces.\n\n```\nlet sequence = [1, 1, 2, 3, 5, 8, 13];\nfor (let i = 0; i < sequence.length; i++) {\n  console.log(sequence[i]);\n}\n```\n\n## Inline Elements\n\nEmphasis, aka italics, with *asterisks* or _underscores_.\n\nThis is [an example](http://example.com) link.\n\nStrong emphasis, aka bold, with **asterisks** or __underscores__.\n\nCombined emphasis with **asterisks and _underscores_**.\n\nStrikethrough uses two tildes. ~~Scratch this.~~\n\nInline `code` with `back-ticks around` it.\n\n## Tables\n\n<div class=\"responsive-table\">\n  <table>\n      <caption>Table with thead, tfoot, and tbody</caption>\n    <thead>\n      <tr>\n        <th>Header content 1</th>\n        <th>Header content 2</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr>\n        <td>Body content 1</td>\n        <td>Body content 2</td>\n      </tr>\n    </tbody>\n    <tfoot>\n      <tr>\n        <td>Footer content 1</td>\n        <td>Footer content 2</td>\n      </tr>\n    </tfoot>\n  </table>\n</div>\n"
+            }
+        },
+        {
+            "modelType": "page",
+            "modelName": "page",
+            "relPath": "terms.md",
+            "data": {
+                "stackbit_model_type": "page",
+                "title": "Privacy and Terms",
+                "layout": "page",
+                "stackbit_url_path": "/terms",
+                "stackbit_dir": "content/pages",
+                "content": "\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Donec pretium vulputate sapien nec sagittis aliquam. Turpis massa sed elementum tempus egestas sed sed. Orci a scelerisque purus semper eget duis at tellus at. Lacus luctus accumsan tortor posuere ac. Ipsum dolor sit amet consectetur adipiscing elit ut aliquam purus. Ultrices sagittis orci a scelerisque purus semper eget duis. Pharetra pharetra massa massa ultricies. Felis eget nunc lobortis mattis aliquam. In cursus turpis massa tincidunt. Tempor nec feugiat nisl pretium. Odio aenean sed adipiscing diam. Ut aliquam purus sit amet luctus venenatis lectus magna fringilla. Justo laoreet sit amet cursus sit amet dictum. Turpis tincidunt id aliquet risus feugiat in ante metus.\n\nMalesuada bibendum arcu vitae elementum curabitur vitae nunc sed. Fringilla urna porttitor rhoncus dolor purus. Consectetur purus ut faucibus pulvinar. Nullam non nisi est sit. Tellus in metus vulputate eu scelerisque felis. Nunc congue nisi vitae suscipit tellus mauris. Phasellus egestas tellus rutrum tellus pellentesque eu tincidunt. Fermentum iaculis eu non diam phasellus vestibulum. Faucibus turpis in eu mi bibendum neque egestas congue. Eget arcu dictum varius duis at consectetur lorem. Pellentesque pulvinar pellentesque habitant morbi tristique. Sagittis nisl rhoncus mattis rhoncus urna neque. In eu mi bibendum neque egestas congue. Et malesuada fames ac turpis egestas.\n\nConsequat id porta nibh venenatis cras sed felis eget velit. Nunc vel risus commodo viverra maecenas accumsan. Congue quisque egestas diam in. Ultricies mi quis hendrerit dolor magna eget est. Duis at tellus at urna. Etiam tempor orci eu lobortis elementum nibh tellus molestie nunc. Et egestas quis ipsum suspendisse ultrices gravida dictum. Ipsum suspendisse ultrices gravida dictum fusce ut placerat orci nulla. Mauris nunc congue nisi vitae. Venenatis tellus in metus vulputate eu scelerisque felis. Ultrices in iaculis nunc sed augue lacus. Eu lobortis elementum nibh tellus molestie nunc. Faucibus nisl tincidunt eget nullam non nisi est.\n\nSagittis vitae et leo duis. Et magnis dis parturient montes nascetur ridiculus mus. Dui vivamus arcu felis bibendum ut. Et netus et malesuada fames ac. Mollis aliquam ut porttitor leo a diam sollicitudin. Elit at imperdiet dui accumsan sit. Justo eget magna fermentum iaculis. Turpis tincidunt id aliquet risus feugiat. Dictumst vestibulum rhoncus est pellentesque elit. Dolor magna eget est lorem ipsum dolor. Posuere lorem ipsum dolor sit amet consectetur adipiscing elit. Metus vulputate eu scelerisque felis imperdiet proin. Congue nisi vitae suscipit tellus mauris. Sed blandit libero volutpat sed cras ornare arcu dui vivamus. Scelerisque purus semper eget duis at tellus at urna condimentum. Elit ut aliquam purus sit amet luctus venenatis lectus magna. Ipsum dolor sit amet consectetur adipiscing elit ut aliquam.\n\nNeque sodales ut etiam sit amet. Magna ac placerat vestibulum lectus mauris ultrices. Turpis massa tincidunt dui ut ornare lectus sit amet est. Sed vulputate mi sit amet mauris commodo quis. Vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras. Eget nullam non nisi est sit amet facilisis. Sem viverra aliquet eget sit amet tellus cras. Massa eget egestas purus viverra accumsan in nisl nisi scelerisque. Gravida arcu ac tortor dignissim convallis aenean. Turpis egestas sed tempus urna et pharetra pharetra massa massa. Egestas dui id ornare arcu odio ut sem. Pretium viverra suspendisse potenti nullam ac tortor vitae purus faucibus. Nibh sit amet commodo nulla. Feugiat scelerisque varius morbi enim nunc. Blandit turpis cursus in hac habitasse platea dictumst quisque sagittis. Fames ac turpis egestas maecenas pharetra convallis posuere morbi. Eu mi bibendum neque egestas. At lectus urna duis convallis. Gravida quis blandit turpis cursus.\n"
+            }
+        }
+    ]
+}
