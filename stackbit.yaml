@@ -10,6 +10,7 @@ pagesDir: content/pages
 pageLayoutKey: layout
 logicFields:
   - blog_feed_section.recent_count
+  - hero_section.background.background_image_opacity
 pageData:
   - pagePath: /
     initialExpandedPaths:
