@@ -10,23 +10,32 @@ function MyApp({ Component, pageProps }) {
         if (window.onNextjsAppDidMount) {
             window.onNextjsAppDidMount();
         }
+
         if (window.onNextjsRouteChangeComplete) {
             window.onNextjsRouteChangeComplete();
         }
 
-        const handleRouteChange = () => {
+        const handleRouteChangeStart = () => {
+            if (window.onNextjsRouteChangeStart) {
+                window.onNextjsRouteChangeStart();
+            }
+        }
+
+        const handleRouteChangeComplete = () => {
             if (window.onNextjsRouteChangeComplete) {
                 window.onNextjsRouteChangeComplete();
             }
         }
 
-        Router.events.on('routeChangeComplete', handleRouteChange)
+        Router.events.on('routeChangeStart', handleRouteChangeStart);
+        Router.events.on('routeChangeComplete', handleRouteChangeComplete);
         return () => {
-            Router.events.off('routeChangeComplete', handleRouteChange)
-        }
-    }, [])
+            Router.events.off('routeChangeStart', handleRouteChangeStart);
+            Router.events.off('routeChangeComplete', handleRouteChangeComplete);
+        };
+    }, []);
 
-    return <Component {...pageProps} />
+    return <Component {...pageProps} />;
 }
 
 // Only uncomment this method if you have blocking data requirements for

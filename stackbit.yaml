@@ -1,6 +1,6 @@
 stackbitVersion: ~0.3.0
 ssgName: nextjs
-ssgVersion: x.x.x
+ssgVersion: 9.4.4
 buildCommand: next build && next export
 publishDir: out
 staticDir: public

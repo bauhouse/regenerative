@@ -5,7 +5,16 @@ const isDev = process.env.NODE_ENV === 'development';
 
 module.exports = {
     plugins: [
-        
+        {
+            module: require('sourcebit-source-sanity'),
+            options: {
+                accessToken: process.env.SANITY_ACCESS_TOKEN,
+                projectId: process.env.SANITY_PROJECT_ID || '__stackbit_sanity_project_id__',
+                dataset: process.env.SANITY_DATASET || 'production',
+                isPreview: isDev,
+                watch: isDev
+            }
+        },
         {
             module: require('sourcebit-target-next'),
             options: {

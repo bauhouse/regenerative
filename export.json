@@ -1538,7 +1538,7 @@
                     }
                 ],
                 "layout": "advanced",
-                "stackbit_url_path": "/blog/",
+                "stackbit_url_path": "/blog",
                 "stackbit_dir": "content/pages"
             }
         },
