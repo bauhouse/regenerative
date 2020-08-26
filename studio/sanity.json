@@ -1,10 +1,10 @@
 {
   "root": true,
   "project": {
-    "name": "__stackbit_sanity_project_name__"
+    "name": "regenerative-6d525"
   },
   "api": {
-    "projectId": "__stackbit_sanity_project_id__",
+    "projectId": "f6e6a39a",
     "dataset": "production"
   },
   "plugins": [
